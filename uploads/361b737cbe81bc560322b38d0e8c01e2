@@ -1,0 +1,436 @@
+ #F2E9E1
+
+(\d?)\s?[\(]?(\d{3})[\-\)]?[\-\(\s]?(\d{3})[\-\)\s]?(\d{4})
+(\d?)\s?(\(\d{3}\)|\d{3})[\-\s]?(\d{3})[\-\s]?(\d{4})
+(\d?)\s?(\(\d{3}\)|^\d{3})[\-\s]?(\d{3})[\-\s]?(\d{4})
+((\d?)\s?\(\d{3}\)|(\d?)[^\(]\d{3}|^\d{3})[\-\s]?(\d{3})[\-\s]?(\d{4})
+
+((\d?)\s?\(\d{3}\)|(\d?)[^\(]\d{3}|^\d{3})[\-\s]?(\d{3})[\-\s]?(\d{4})
+^((1)?\s?\(\d{3}\)|(1)?\s?\d{3}|^(\d{3}))[\-\s]?(\d{3})[\-\s]?(\d{4})$
+
+
+<div class="container-fluid" ng-app="codeCampNews" >
+  <div class="row" id="header">
+    <div class="title text-center col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h1>FreeCodeCamp News</h1>
+    </div>
+    <div class="sub-header text-center col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h3>Fresh & Hot News</h3>
+    </div>
+  </div> <!--Header Row -->
+  <div class="container" id="main" ng-controller="NewsController as newsCtrl">
+    <div class="post-container col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="post">
+        <div class="avatar pull-left">
+          <img src="https://avatars.githubusercontent.com/u/10391859?v=3" class="avatar-img" />
+        </div>
+        <div class="post-title">
+          <a href="#">How I Landed a Job as a Junior Software Engineer</a>
+        </div>
+        <div class="post-descrip"> <!-- Tool tip full meta-descrip? -->
+          <p>Four months ago, I graduated from a code school that taught me the basics of Ruby and Ruby on Rails. </p>
+        </div>
+        <div class="post-info"> 
+          <div class="post-likes">
+          </div>
+          <div class="post-author">
+            <span>10 pts - posted 2 days ago by <a href="#">jamesw</a></span>
+          </div>
+        </div>
+      </div>
+    </div> <!-- news post -->
+  </div> <!-- main body --->
+</div>
+
+<a href="{{hotPost.link}}" ng-if="hotPost.hasDescription" data-toggle='tooltip' data-placement='top' title='{{hotPost.metaDescription}}'  >{{hotPost.headline}}</a>
+<a href="{{hotPost.link}}" ng-if="!hotPost.hasDescription" data-toggle='tooltip' data-placement='top' title='{{hotPost.headline}}' >{{hotPost.headline}}</a>
+
+
+<a href="{{hotPost.link}}" {{ hotPost.hasDescription ? data-toggle='tooltip' data-placement='top' title='{{hotPost.metaDescription}}'  : ""}}>{{hotPost.headline}}</a>
+
+{{ hotPost.hasDescription ? "data-toggle='tooltip' data-placement='top' title='hotPost.metaDescription' " : ""}}
+<div ng-repeat="hotPost in newsCtrl.posts" class="post-container col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="post">
+        <div class="avatar pull-left">
+          <img ng-src="{{hotPost.author.picture}}" class="avatar-img" />
+        </div>
+        <div class="post-title">
+          <a href="#">{{hotPost.headline}}</a>
+        </div>
+        <div class="post-info"> 
+          <div class="post-likes">
+          </div>
+          <div class="post-author">
+            <span>{{hotPost.upVotes.length}} <a href="#">{{hotPost.author.username}}</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div  class="post-container col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="post">
+        <div class="avatar pull-left">
+          <img src="" class="avatar-img" />
+        </div>
+        <div class="post-title">
+          <a href="#"></a>
+        </div>
+        <div class="post-info"> 
+          <div class="post-likes">
+          </div>
+          <div class="post-author">
+            <span><a href="#"></a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div  class="post-container col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="post">
+        <div class="avatar pull-left">
+          <img src="" class="avatar-img" />
+        </div>
+        <div class="post-info pull-left">
+          <div class="post-author">
+            <span><a href="#">Author</a> - 60 pts</span>
+          </div>
+          <div class="post-time"> 
+            <span>Posted 2 days ago</span>
+          </div>
+        </div>
+        <div class="post-title"> <!-- Hover tool tip description if avaliable? -->
+          <a href="#">How I Landed a Job as a Junior Software Engineer with Zero Work Experience - Tony</a>
+        </div>
+      </div>
+    </div>
+
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+#header {
+  margin-bottom: 15px;
+}
+
+#main {
+  min-height: 500px;
+  background-color: grey;
+  padding: 0;
+}
+
+.post-container {
+  min-height: 50px;
+  color: black;
+  margin-top: 10px;
+  margin-left: 0px;
+  padding: 0px 5px;
+}
+
+.post {
+  background-color: white;
+  min-height: 160px;
+}
+
+.avatar {
+  margin-right: 10px;
+  margin-left: 5px;
+  margin-top: 15px;
+}
+
+.avatar-img {
+  height: 50px;
+  width: 50px;
+ }
+
+.post-title {
+  padding-top: 10px;
+  margin-bottom: 5px;
+}
+.post-title a {
+  font-size: 16px;
+}
+
+.post-descrip {
+}
+.post-descrip p {
+  padding: 0px 5px;
+}
+
+.post-info {
+  text-align: right;
+  margin-top: 5px;
+  padding-right: 10px;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.post-info .post-author {
+  font-size: 12px;
+  padding-right:2px;
+}
+
+.post-info .post-author span {
+  width: 100%;
+  height: 15px;
+}
+
+
+//JS CALCULATOR 
+(function (){
+  var allPressed = [];
+  var twoNumOperate = [];
+  var clearOutputNextPress = false;
+  var emptyTwoNumOperate = false;
+  var output = $("#output");
+  output.text("");
+  
+  function singleOperation() {
+    if( twoNumOperate.length === 3 ) {
+      var op = twoNumOperate[1];
+      var first = parseFloat(twoNumOperate[0]);
+      var second = parseFloat(twoNumOperate[2]);
+      switch(op) {
+        case "/":
+          first /= second;
+          break;
+        case "x":
+          first *= second;
+          break;
+        case "-":
+          first -= second;
+          break;
+        case "+":
+          first += second;
+          break;
+        default:
+          break;
+      }
+      twoNumOperate = [first];
+      allPressed.push(first);
+      return first;
+    }
+    return null;
+  }
+  
+  function handleButton(btn)
+  {
+    var btnValue = btn.attr("value");
+    
+    if( btn.hasClass("clear-button") ) {
+      if( btnValue === "AC" ) {
+        allPressed = [];
+        twoNumOperate = [];
+        output.text("");
+      }
+      else {
+        if( output.text() !== "")
+          output.text("");
+      }
+    }
+    
+    else if( btn.hasClass("operation-button") && btnValue === "=") {
+      if( twoNumOperate.length > 0 ) {
+        if( output.text() === "" ){
+          output.text(twoNumOperate[0])
+          
+        }
+        else if( twoNumOperate.length === 2 && output.text() !== "" ) {
+          twoNumOperate.push(output.text());
+          output.text(singleOperation());
+          clearOutputNextPress = true;
+          emptyTwoNumOperate = true;
+        }
+      }
+    }
+    
+    else if( btn.hasClass("operation-button") && btnValue !== "=" && btnValue !== "%") {
+      if( clearOutputNextPress ) {
+        output.text("");
+        clearOutputNextPress = false;
+      }
+      if( output.text() !== "" ) {
+        if( twoNumOperate.length === 0 ) {
+          twoNumOperate.push(output.text());
+          twoNumOperate.push(btnValue);
+          output.text("");
+        }
+        else {
+          twoNumOperate.push(output.text());
+          output.text(singleOperation());
+          twoNumOperate.push(btnValue);
+          clearOutputNextPress = true;
+          emptyTwoNumOperate = false;
+        }
+      }
+      
+      else if( output.text() === "" && twoNumOperate.length > 0 ) {
+        if( twoNumOperate.length === 2 ) {
+          if( twoNumOperate[1] === "x" || twoNumOperate[1] === "/" ) 
+            twoNumOperate.push(1);
+          else
+            twoNumOperate.push(0);
+          
+          output.text(singleOperation());
+          clearOutputNextPress = true;
+          
+        }
+        twoNumOperate.push(btnValue);
+        emptyTwoNumOperate = false;
+      }
+    }
+    
+    else if ( output.text() !== "" && btnValue === "%" && twoNumOperate.length === 2) {
+      var tempVal = output.text();
+      tempVal = (parseFloat(twoNumOperate[0])) * ( tempVal / 100 );
+      twoNumOperate.push(tempVal);
+      output.text(singleOperation());
+    }
+    
+    else if( btn.hasClass("number-button") ) {
+      if( emptyTwoNumOperate ) {
+        twoNumOperate = [];
+        console.log('here');
+        emptyTwoNumOperate = false;
+      }
+      if( output.text() === "" || clearOutputNextPress) {
+        output.text(btnValue);
+        clearOutputNextPress = false;
+      }
+      else
+        output.append(btnValue);
+    }
+  }
+  
+  $('.btn').click( function() {
+    handleButton($(this));
+    console.log(twoNumOperate);
+  });
+})();
+
+//
+
+<div class="container" ng-app="WikiView">
+  <div class="row">
+    <div class="header">
+      <div class="row title text-center">
+        <h1>Wikipedia Viewer</h1>
+        <div class="row">
+          <h4>Search for numerous articles</h4>
+        </div>
+      </div>
+    </div> <!-- End Header -->
+  </div> <!-- Header Row -->
+  <div class="container" ng-controller="WikiController as wikiCtrl">
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-center input-group" id="search-area">
+      <form class="form-inline">
+        <!-- Animate to slide open text search when click search? -->
+        <div class="form-group col-lg-7 col-md-7 col-sm-7 col-xs-7">
+          <div class="input-group input-group-lg" id="search-bar-area">
+            <input id="search-bar" type="text" class="form-control" placeholder="Search for..." >
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button"><i class="fa fa-search fa-lg"></i></button>
+            </span>
+          </div><!-- search-bar-area -->
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3">
+          <div class="input-group input-group-lg">
+            Display Amount
+            <select class="form-control">
+              <option>10</option>
+              <option>20</option>
+              <option>30</option>
+              <option>40</option>
+              <option>50</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div><!-- End Search-area -->
+  </div> <!-- End Articles Container -->
+</div> <!-- End Body Container -->
+
+
+
+
+<div id="wrap">
+  <form action="" autocomplete="on">
+  <input id="search" name="search" type="text" placeholder="What're we looking for ?"><input id="search_submit" value="Rechercher" type="submit">
+  </form>
+</div>
+
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
+@import url(https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css);
+
+body {
+	background: #DDD;
+	font-size: 15px;
+}
+#wrap {
+  margin: 50px 100px;
+  display: inline-block;
+  position: relative;
+  height: 60px;
+  float: right;
+  padding: 0;
+  position: relative;
+}
+
+input[type="text"] {
+  height: 60px;
+  font-size: 55px;
+  display: inline-block;
+  font-family: "Lato";
+  font-weight: 100;
+  border: none;
+  outline: none;
+  color: #555;
+  padding: 3px;
+  padding-right: 60px;
+  width: 0px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  z-index: 3;
+  transform: translate3d(0, 1em,0);
+  transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000), transform 0.25s;
+  transition-timing-function: ease-in-out;
+  cursor: pointer;
+}
+
+input[type="text"]:focus:hover {
+  border-bottom: 1px solid #BBB;
+  border-top: 1px solid blue;
+}
+
+input[type="text"]:focus {
+  width: 700px;
+  z-index: 1;
+  border-bottom: 1px solid #BBB;
+  cursor: text;
+}
+input[type="submit"] {
+  height: 67px;
+  width: 63px;
+  display: inline-block;
+  color:red;
+  float: right;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADNQTFRFU1NT9fX1lJSUXl5e1dXVfn5+c3Nz6urqv7+/tLS0iYmJqampn5+fysrK39/faWlp////Vi4ZywAAABF0Uk5T/////////////////////wAlrZliAAABLklEQVR42rSWWRbDIAhFHeOUtN3/ags1zaA4cHrKZ8JFRHwoXkwTvwGP1Qo0bYObAPwiLmbNAHBWFBZlD9j0JxflDViIObNHG/Do8PRHTJk0TezAhv7qloK0JJEBh+F8+U/hopIELOWfiZUCDOZD1RADOQKA75oq4cvVkcT+OdHnqqpQCITWAjnWVgGQUWz12lJuGwGoaWgBKzRVBcCypgUkOAoWgBX/L0CmxN40u6xwcIJ1cOzWYDffp3axsQOyvdkXiH9FKRFwPRHYZUaXMgPLeiW7QhbDRciyLXJaKheCuLbiVoqx1DVRyH26yb0hsuoOFEPsoz+BVE0MRlZNjGZcRQyHYkmMp2hBTIzdkzCTc/pLqOnBrk7/yZdAOq/q5NPBH1f7x7fGP4C3AAMAQrhzX9zhcGsAAAAASUVORK5CYII=) center center no-repeat;
+  text-indent: -10000px;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity .4s ease;
+}
+
+input[type="submit"]:hover {
+  opacity: 0.8;
+}
